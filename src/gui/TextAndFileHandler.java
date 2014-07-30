@@ -43,6 +43,10 @@ public class TextAndFileHandler extends TransferHandler {
 	@Override
 	public boolean canImport(TransferHandler.TransferSupport support) {
 		
+		if(!support.getComponent().isEnabled()){
+			return false;
+		}
+		
 		if(!support.isDrop()){
 			return true;
 		}
@@ -70,7 +74,7 @@ public class TextAndFileHandler extends TransferHandler {
     public boolean importData(TransferHandler.TransferSupport support) {
 		
 		
-		if(!canImport(support) || !(support.getComponent() instanceof JTextField)){
+		if(!canImport(support) || !(support.getComponent() instanceof JTextField) || !support.getComponent().isEnabled()){
 			return false;
 		}
 		
@@ -94,10 +98,15 @@ public class TextAndFileHandler extends TransferHandler {
 						text += ";" + files.get(i).getAbsolutePath();
 					}
 				}
+
+				jTF.setText(text);
 				
 			}else if(flavorList.contains(DataFlavor.stringFlavor)){
 				text = (String) support.getTransferable().getTransferData(DataFlavor.stringFlavor);
-			
+
+				jTF.setText(oldTxt.substring(0, start) + text + oldTxt.substring(end));
+				jTF.setCaretPosition(start+text.length());
+				
 			}else{
 				return false;
 				
@@ -110,7 +119,6 @@ public class TextAndFileHandler extends TransferHandler {
 			return false;
 		}
 		
-		jTF.setText(oldTxt.substring(0, start) + text + oldTxt.substring(end));
 		
 		return true;
 	}

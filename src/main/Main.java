@@ -17,10 +17,10 @@ import javax.swing.JOptionPane;
 
 public class Main {
 
-	private static final String version = "1.4";
+	private static final String version = "1.4.5";
 	private static final String author = "Max Moser";
 	private static final String title = "CopyCat";
-	private static final String date = "2014-07-29";
+	private static final String date = "2014-07-30";
 	private static List<String> errorMessages;
 
 	
@@ -103,7 +103,6 @@ public class Main {
 					origSourceFileText = g.getSourceFileName();
 					origDestinationFileText = g.getDestinationFileName();
 				}
-				
 				srcFilenames = origSourceFileText.split(";");
 				int index = -1;
 

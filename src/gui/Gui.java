@@ -210,7 +210,10 @@ public class Gui {
 
 	public CopyCatAction waitForAction(){
 		while(this.action.equals(CopyCatAction.None)){
-
+			try {
+				Thread.sleep(0);
+			} catch (InterruptedException e) {
+			}
 		}
 
 		CopyCatAction tmp = this.action;
