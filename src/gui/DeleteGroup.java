@@ -110,6 +110,7 @@ public class DeleteGroup extends JPanel {
 				if(e.getActionCommand().equals("search")){
 
 					JFileChooser jfc = new JFileChooser();
+					jfc.setFileHidingEnabled(false);
 					jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 					jfc.setMultiSelectionEnabled(true);
 					
@@ -124,7 +125,7 @@ public class DeleteGroup extends JPanel {
 								jfc.setSelectedFile(selectedFile);
 
 							}else if(new File(selectedFile.getAbsolutePath()).exists()){
-								jfc.setSelectedFile(new File(selectedFile.getAbsolutePath()+"/"));
+								jfc.setSelectedFile(new File(selectedFile.getAbsolutePath()+File.pathSeparator));
 
 							}
 

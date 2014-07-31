@@ -146,6 +146,7 @@ public class CopyGroup extends JPanel {
 
 					JFileChooser jfc = new JFileChooser();
 					
+					jfc.setFileHidingEnabled(false);
 					jfc.setMultiSelectionEnabled(true);
 					jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 					if(this.lastSelectedSource == null){
@@ -196,13 +197,14 @@ public class CopyGroup extends JPanel {
 				}else if(e.getActionCommand().equals("destSearch")){
 
 					JFileChooser jfc = new JFileChooser();
+					jfc.setFileHidingEnabled(false);
 					jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 					
 					if(this.lastSelectedDest == null){
 						File selectedFile;
 						if(cg.getDestinationTextField().getText().equals("") && !cg.getSourceTextField().getText().equals("")){
 
-							selectedFile = new File(new File(cg.getSourceTextField().getText()).getAbsolutePath()+"/");
+							selectedFile = new File(new File(cg.getSourceTextField().getText()).getAbsolutePath()+File.pathSeparator);
 
 						}else if(!cg.getDestinationTextField().getText().equals("")){
 
@@ -217,7 +219,7 @@ public class CopyGroup extends JPanel {
 							jfc.setSelectedFile(selectedFile);
 
 						}else if(selectedFile != null && new File(selectedFile.getAbsolutePath()).exists()){
-							jfc.setSelectedFile(new File(selectedFile.getAbsolutePath()+"/"));
+							jfc.setSelectedFile(new File(selectedFile.getAbsolutePath()+File.pathSeparator));
 
 						}
 					}else{
